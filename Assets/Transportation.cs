@@ -12,6 +12,9 @@ public class Transportation : MonoBehaviour
     public Transform ending_position;
     public Transform landing_position;
     public float speed;
+
+    public bool  use_animator;
+    Animator animator;
    
     //check this if you want the vechicle to start it movement from the current position its placed,.
     [SerializeField] private bool start_from_current_position;
@@ -25,7 +28,8 @@ public class Transportation : MonoBehaviour
 
     public bool movement_execute;
     public Booltrigger Booltriggerscript;
-   
+
+    public Transform saddle;
    // private void Start()
    // {
    //  if (createpositiongameobjects)
@@ -64,8 +68,14 @@ public class Transportation : MonoBehaviour
     {
         if (!finishedmove)
         {
+            if (use_animator)
+            {
+                Vechicle.GetComponent<Animator>().enabled = true;
+            }
             Player.transform.GetComponent<SpriteRenderer>().enabled = true;
             Player.position = Vechicle.position;
+            if(vechicletype == VechicleType.horse) Player.position = saddle.position;
+
             Player.transform.SetParent(Vechicle);
             if (!start_from_current_position)
             {
@@ -78,6 +88,7 @@ public class Transportation : MonoBehaviour
 
         if (finishedmove)
         {
+            Vechicle.GetComponent<Animator>().enabled = false;
             Invoke("exitVechicle",1.5f);
         }
         

@@ -25,10 +25,10 @@ public class ontransitionpointtrigger : MonoBehaviour
     {
         cameraa.transform.GetComponent<PixelPerfectCamera>().refResolutionX = 1920;
         cameraa.transform.GetComponent<PixelPerfectCamera>().refResolutionY = 640;
-        cameraa.transform.GetComponent<PixelPerfectCamera>().assetsPPU = 64;
+       // cameraa.transform.GetComponent<PixelPerfectCamera>().assetsPPU = 64;
 
-        Vector3 tempposition = cameraa.transform.position + transform.up * upheight;
-        cameraa.transform.GetComponent<CameraController>().offset.y = cameraa.transform.GetComponent<CameraController>().offset.y + upheight;
+       // Vector3 tempposition = cameraa.transform.position + Vector3.up * upheight;
+        //cameraa.transform.GetComponent<CameraController>().offset.y = cameraa.transform.GetComponent<CameraController>().offset.y + upheight;
     }
     void deactivate_canvas()
     {
