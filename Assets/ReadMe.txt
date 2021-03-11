@@ -10,6 +10,7 @@ currently we are working on a node based dialogue manager using graphview, but f
 
 the first npc (the pirate/captain) uses a diffrent script from the rest for conversation...since they asked me to complete this in a week and sincce it is just a prototype i just went with simpler hacks to just finish a level of the  game;
 
+currently the question_manager is not singleton,but reside within the npc or interactable gameobjects(the objects that asks questions)...i did it that way because for the prototype i wanted each character to have distinctive background for question ui,and it was less work this way,but i have already implemented a sigleton central Questionmanager that can pass the question to characters but i have removed it..for now...
  
 
 
