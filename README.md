@@ -1,6 +1,7 @@
 # 2D-GameRPG-Concept
 
 HI,
+first of all,the project is complete mess and its done without any structure nor any artitecture,its complete mess,sorry for that.
 
 
 The levels are not complete nor finished and i have removed all the latest mechanisms we have added as it is confusing and creating bugs.
