@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPGM.Gameplay;
 
 public class Transportation : MonoBehaviour
 {
@@ -25,12 +26,17 @@ public class Transportation : MonoBehaviour
 
 
     private bool finishedmove;
-    private bool finshedlanding;
+    private bool finshedlanding = false;
 
     public bool movement_execute;
     public Booltrigger Booltriggerscript;
 
     public Transform saddle;
+
+
+    public bool changesmoothspeed;
+    public float changedvalue;
+
    // private void Start()
    // {
    //  if (createpositiongameobjects)
@@ -67,8 +73,13 @@ public class Transportation : MonoBehaviour
 
     void  move_Vechicle()
     {
+        var tempmovespeed = Camera.main.transform.GetComponent<CameraController>().smoothTime;
         if (!finishedmove)
         {
+            if (changesmoothspeed)
+            {
+                Camera.main.transform.GetComponent<CameraController>().smoothTime = changedvalue;
+            }
             if (use_animator)
             {
                 if (animator != null) animator.SetBool("move", true);
@@ -83,19 +94,17 @@ public class Transportation : MonoBehaviour
                 Vechicle.position = starting_position.position;
             }
             Vechicle.position = Vector2.MoveTowards(Vechicle.position, ending_position.position, speed * Time.deltaTime);
-            if (Vechicle.position == ending_position.position) { finishedmove = true; }
+            if ( Vechicle.position == ending_position.position) { finishedmove = true; }
             
         }
 
         if (finishedmove)
         {
-            Debug.Log("yes finshed moving0");
-            if (use_animator)
-            {
-                 animator.SetBool("move", false);
-            }
+            
             
             Invoke("exitVechicle",1.5f);
+            Debug.Log("yes finshed moving0");
+            if (animator != null) animator.SetBool("move", true);
         }
         
         
@@ -108,10 +117,7 @@ public class Transportation : MonoBehaviour
 
     void exitVechicle()
     {
-        if (use_animator)
-        {
-            animator.SetBool("move", false);
-        }
+        
         if (!finshedlanding)
         {
             Player.transform.parent = null;
