@@ -8,16 +8,17 @@ public class Transportation : MonoBehaviour
     public enum VechicleType {car,boat,horse,railkart, }
     public VechicleType vechicletype;
     public bool createpositiongameobjects;
+    [SerializeField] private bool start_from_current_position;
     public Transform starting_position;
     public Transform ending_position;
     public Transform landing_position;
     public float speed;
 
     public bool  use_animator;
-    Animator animator;
+     public Animator animator;
    
     //check this if you want the vechicle to start it movement from the current position its placed,.
-    [SerializeField] private bool start_from_current_position;
+   
 
     public Transform Player;
     public Transform Vechicle;
@@ -70,9 +71,9 @@ public class Transportation : MonoBehaviour
         {
             if (use_animator)
             {
-                Vechicle.GetComponent<Animator>().enabled = true;
+                if (animator != null) animator.SetBool("move", true);
             }
-            Player.transform.GetComponent<SpriteRenderer>().enabled = true;
+           // Player.transform.GetComponent<SpriteRenderer>().enabled = true;
             Player.position = Vechicle.position;
             if(vechicletype == VechicleType.horse) Player.position = saddle.position;
 
@@ -88,7 +89,12 @@ public class Transportation : MonoBehaviour
 
         if (finishedmove)
         {
-            Vechicle.GetComponent<Animator>().enabled = false;
+            Debug.Log("yes finshed moving0");
+            if (use_animator)
+            {
+                 animator.SetBool("move", false);
+            }
+            
             Invoke("exitVechicle",1.5f);
         }
         
@@ -102,12 +108,16 @@ public class Transportation : MonoBehaviour
 
     void exitVechicle()
     {
+        if (use_animator)
+        {
+            animator.SetBool("move", false);
+        }
         if (!finshedlanding)
         {
             Player.transform.parent = null;
-            Player.position = landing_position.position;
-            Player.transform.GetComponent<SpriteRenderer>().enabled = true;
-            this.gameObject.SetActive(false);
+            if (landing_position != null) Player.position = landing_position.position; else Player.position = this.transform.position;
+            //  Player.transform.GetComponent<SpriteRenderer>().enabled = true;
+            this.enabled = false;
         }
 
         

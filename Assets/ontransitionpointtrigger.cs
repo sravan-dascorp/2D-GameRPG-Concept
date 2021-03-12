@@ -16,8 +16,8 @@ public class ontransitionpointtrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
             {
             fadingcanvas.SetActive(true);
-            Invoke("delay", 1.6f);
-            Invoke("deactivate_canvas", 3f);
+            Invoke("delay", 2.2f);
+            Invoke("deactivate_canvas", 6f);
         }
         
     }
@@ -25,7 +25,8 @@ public class ontransitionpointtrigger : MonoBehaviour
     {
         cameraa.transform.GetComponent<PixelPerfectCamera>().refResolutionX = 1920;
         cameraa.transform.GetComponent<PixelPerfectCamera>().refResolutionY = 640;
-       // cameraa.transform.GetComponent<PixelPerfectCamera>().assetsPPU = 64;
+        // cameraa.transform.GetComponent<PixelPerfectCamera>().assetsPPU = 64;
+       // cameraa.GetComponent<CameraController>().smoothTime = 0.5f;
 
        // Vector3 tempposition = cameraa.transform.position + Vector3.up * upheight;
         //cameraa.transform.GetComponent<CameraController>().offset.y = cameraa.transform.GetComponent<CameraController>().offset.y + upheight;

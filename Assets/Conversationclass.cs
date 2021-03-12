@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]public class Conversationclass 
 {
@@ -26,6 +27,10 @@ using UnityEngine;
 
     public bool changebooltrigger;
     public Booltrigger booltriggerscript;
+    
+
+    public bool run_the_Script;
+    public UnityEvent runscript;
 
 
 }
